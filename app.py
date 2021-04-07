@@ -5,12 +5,25 @@ import urllib.request
 from pathlib import Path
 from typing import List, NamedTuple
 
+#camera.py packages
+from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+from tensorflow.keras.preprocessing.image import img_to_array
+from tensorflow.keras.models import load_model
+from imutils.video import VideoStream
+import imutils
+import cv2, os, urllib.request
+import numpy as np
+from django.conf import settings
+import os
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
 try:
     from typing import Literal
 except ImportError:
     from typing_extensions import Literal  # type: ignore
 
-import av
+import pyav
 import cv2
 import numpy as np
 import streamlit as st
