@@ -5,8 +5,10 @@ opencv_python==4.5.1.48
 streamlit==0.79.0
 streamlit_webrtc==0.7.2
 typing_extensions==3.7.4.3
-os
+os.path
+av
 tensorflow
 imutils
 keras
 urllib
+django
