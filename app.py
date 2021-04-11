@@ -13,7 +13,7 @@ import imutils
 import cv2, os, urllib.request
 import numpy as np
 import streamlit as st
-
+import av
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
