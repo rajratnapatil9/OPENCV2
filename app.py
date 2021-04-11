@@ -349,7 +349,7 @@ def app_mask_Detect():
                     mode=WebRtcMode.SENDRECV,
                     client_settings=WEBRTC_CLIENT_SETTINGS,
                     video_transformer_factory= MaskDetect,
-
+                    async_transform=True,
                 )
 
     
