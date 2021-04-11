@@ -25,15 +25,14 @@ except ImportError:
 
 
 
-face_detection_videocam = cv2.CascadeClassifier(os.path.join(
-    settings.BASE_DIR, 'opencv_haarcascade_data/haarcascade_frontalface_default.xml'))
-face_detection_webcam = cv2.CascadeClassifier(os.path.join(
-    settings.BASE_DIR, 'opencv_haarcascade_data/haarcascade_frontalface_default.xml'))
+#face_detection_videocam = cv2.CascadeClassifier(os.path.join(
+ #   settings.BASE_DIR, 'opencv_haarcascade_data/haarcascade_frontalface_default.xml'))
+##   settings.BASE_DIR, 'opencv_haarcascade_data/haarcascade_frontalface_default.xml'))
 # load our serialized face detector model from disk
-prototxtPath = os.path.sep.join([settings.BASE_DIR, "face_detector/deploy.prototxt"])
-weightsPath = os.path.sep.join([settings.BASE_DIR, "face_detector/res10_300x300_ssd_iter_140000.caffemodel"])
-faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
-maskNet = load_model(os.path.join(settings.BASE_DIR, 'face_detector/mask_detector.model.h5'))
+#prototxtPath = os.path.sep.join([settings.BASE_DIR, "face_detector/deploy.prototxt"])
+#weightsPath = os.path.sep.join([settings.BASE_DIR, "face_detector/res10_300x300_ssd_iter_140000.caffemodel"])
+#faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
+#maskNet = load_model(os.path.join(settings.BASE_DIR, 'face_detector/mask_detector.model.h5'))
 
 from streamlit_webrtc import (
     ClientSettings,
@@ -157,20 +156,21 @@ def app_loopback():
 
 
 def app_mask_Detect():
-   
-   # MODEL_URL_face = "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/res10_300x300_ssd_iter_140000.caffemodel"  # noqa: E501
+    face_detection_videocam= "https://github.com/rajratnapatil9/OPENCV2/blob/main/opencv_haarcascade_data/haarcascade_frontalface_default.xml"
+      # noqa: E501
    # MODEL_face_LOCAL_PATH = HERE / "./face_detector/res10_300x300_ssd_iter_140000.caffemodel"
 
-   # MODEL_URL_mask = "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/mask_detector.model.h5"  # noqa: E501
+    maskNet = "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/mask_detector.model.h5"  # noqa: E501
    # MODEL_mask_LOCAL_PATH = HERE / "./face_detector/mask_detector.model.h5"
 
-   # PROTOTXT_URL_mask = "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/deploy.prototxt"  # noqa: E501
+    prototxtPath = "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/deploy.prototxt"  
+    weightsPath = "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/res10_300x300_ssd_iter_140000.caffemodel"
     #PROTOTXT_mask_LOCAL_PATH = HERE / "./face_detector/deploy.prototxt"
-
+    faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
    # download_file(MODEL_URL_face, MODEL_face_LOCAL_PATH, expected_size=23147564)
     #download_file(MODEL_URL_mask, MODEL_face_LOCAL_PATH, expected_size=23147564)
    # download_file(PROTOTXT_URL_mask, PROTOTXT_mask_LOCAL_PATH, expected_size=29353)
-
+    
     
 
     class Detection(NamedTuple):
