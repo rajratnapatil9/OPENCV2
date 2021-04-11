@@ -309,10 +309,10 @@ def app_mask_Detect():
                     cv2.putText(frame, label, (startX, startY - 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
                     cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
-                    ret, jpeg = cv2.imencode('.jpg', frame)
+             ret, jpeg = cv2.imencode('.jpg', frame)
              return jpeg.tobytes()
         
-         def transform(self):
+         def transform(self,frame):
              #jpeg = frame.to_ndarray(format="bgr24")
              frame = self.vs.read()
              frame = imutils.resize(frame, width=650)
