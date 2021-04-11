@@ -167,8 +167,8 @@ def app_mask_Detect():
    # MODEL_mask_LOCAL_PATH = HERE / "./face_detector/mask_detector.model.h5"
     from os.path import dirname, join
 
-    prototxtPath = join(dirname(__file__), "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/deploy.prototxt")
-    weightsPath = join(dirname(__file__), "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/res10_300x300_ssd_iter_140000.caffemodel")
+    prototxtPath = join(dirname(__file__), "face_detector/deploy.prototxt")
+    weightsPath = join(dirname(__file__), "face_detector/res10_300x300_ssd_iter_140000.caffemodel")
     #prototxtPath = r"https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/deploy.prototxt"  
     #weightsPath = r"https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/res10_300x300_ssd_iter_140000.caffemodel"
     #PROTOTXT_mask_LOCAL_PATH = HERE / "./face_detector/deploy.prototxt"
