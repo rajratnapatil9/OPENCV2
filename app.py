@@ -309,24 +309,40 @@ def app_mask_Detect():
                 cv2.putText(frame, label, (startX, startY - 10),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
                 cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
-             ret, jpeg = cv2.imencode('.jpg', frame)
+                ret, jpeg = cv2.imencode('.jpg', frame)
              return jpeg.tobytes()
 
+         def transform(self):
+             frame = self.vs.read()
+             frame = imutils.resize(frame, width=650)
+             frame = cv2.flip(frame, 1)
+             # detect faces in the frame and determine if they are wearing a
+              #face mask or not
+             (locs, preds) = self.detect_and_predict_mask(frame, faceNet, maskNet)
+
+            # loop over the detected face locations and their corresponding
+            # locations
+             for (box, pred) in zip(locs, preds):
+                # unpack the bounding box and predictions
+                (startX, startY, endX, endY) = box
+                (mask, withoutMask) = pred
+
+                # determine the class label and color we'll use to draw
+                # the bounding box and text
+                label = "Mask" if mask > withoutMask else "No Mask"
+                color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
+
+                # include the probability in the label
+                label = "{}: {:.2f}%".format(label, max(mask, withoutMask) * 100)
+
+                # display the label and bounding box rectangle on the output
+                # frame
+                cv2.putText(frame, label, (startX, startY - 10),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
+                cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
+                ret, jpeg = cv2.imencode('.jpg', frame)
+             return jpeg.tobytes()
          
-         def transform(self, frame: av.VideoFrame) -> np.ndarray:
-            image = frame.to_ndarray(format="bgr24")
-            blob = cv2.dnn.blobFromImage(
-                cv2.resize(image, (300, 300)), 0.007843, (300, 300), 127.5
-            )
-            self.vs(blob)
-            detections = self.vs.forward()
-            get_frame, result = self.get_frame(image, detections)
-
-            # NOTE: This `transform` method is called in another thread,
-            # so it must be thread-safe.
-            self.result_queue.put(result)
-
-            return get_frame
 
     webrtc_ctx = webrtc_streamer(
                     key="mask-detection",
