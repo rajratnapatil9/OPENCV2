@@ -163,14 +163,14 @@ def app_mask_Detect():
       # noqa: E501
    # MODEL_face_LOCAL_PATH = HERE / "./face_detector/res10_300x300_ssd_iter_140000.caffemodel"
 
-    maskNet = "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/mask_detector.model.h5"  # noqa: E501
+    #maskNet = "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/mask_detector.model.h5"  # noqa: E501
    # MODEL_mask_LOCAL_PATH = HERE / "./face_detector/mask_detector.model.h5"
     from os.path import dirname, join
 
-    prototxtPath = join(dirname(__file__), "face_detector/deploy.prototxt")
-    weightsPath = join(dirname(__file__), "face_detector/res10_300x300_ssd_iter_140000.caffemodel")
+    #prototxtPath = join(dirname(__file__), "face_detector/deploy.prototxt")
+    #weightsPath = join(dirname(__file__), "face_detector/res10_300x300_ssd_iter_140000.caffemodel")
     
-    faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
+    #faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
    # download_file(MODEL_URL_face, MODEL_face_LOCAL_PATH, expected_size=23147564)
     #download_file(MODEL_URL_mask, MODEL_face_LOCAL_PATH, expected_size=23147564)
    # download_file(PROTOTXT_URL_mask, PROTOTXT_mask_LOCAL_PATH, expected_size=29353)
@@ -211,7 +211,7 @@ def app_mask_Detect():
          def __del__(self):
             cv2.destroyAllWindows()
 
-         def transform(self, frame, faceNet, maskNet):
+         def pred_face_mask(self, frame, faceNet, maskNet):
             
             
 
@@ -311,7 +311,21 @@ def app_mask_Detect():
              ret, jpeg = cv2.imencode('.jpg', frame)
              return jpeg.tobytes()
 
+         
+         def transform(self, frame: av.VideoFrame) -> np.ndarray:
+            image = frame.to_ndarray(format="bgr24")
+            blob = cv2.dnn.blobFromImage(
+                cv2.resize(image, (300, 300)), 0.007843, (300, 300), 127.5
+            )
+            self._net.setInput(blob)
+            detections = self._net.forward()
+            annotated_image, result = self._annotate_image(image, detections)
 
+            # NOTE: This `transform` method is called in another thread,
+            # so it must be thread-safe.
+            self.result_queue.put(result)
+
+            return get_frame
     webrtc_ctx = webrtc_streamer(
         key="mask-detection",
         mode=WebRtcMode.SENDRECV,
