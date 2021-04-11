@@ -280,7 +280,7 @@ def app_mask_Detect():
             # locations
             return (locs, preds)
 
-         def get_frame(self):
+         def transform(self):
              frame = self.vs.read()
              frame = imutils.resize(frame, width=650)
              frame = cv2.flip(frame, 1)
@@ -312,9 +312,7 @@ def app_mask_Detect():
              return jpeg.tobytes()
 
          
-         def transform(self, frame: av.VideoFrame) -> av.VideoFrame:
-            
-            return get_frame
+       
    
     webrtc_ctx = webrtc_streamer(
         key="mask-detection",
