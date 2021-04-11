@@ -194,7 +194,7 @@ def app_mask_Detect():
             for (x, y, w, h) in faces_detected:
                 cv2.rectangle(image, pt1=(x, y), pt2=(x + w, y + h), color=(255, 0, 0), thickness=2)
             frame_flip = cv2.flip(image, 1)
-            ret, jpeg = cv2.imencode('.jpg', frame_flip)
+            jpeg = cv2.imencode('.jpg', frame_flip)
             #data = []
             #data.append(jpeg.tobytes())
             return jpeg.tobytes()
