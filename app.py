@@ -194,9 +194,9 @@ def app_mask_Detect():
             for (x, y, w, h) in faces_detected:
                 cv2.rectangle(image, pt1=(x, y), pt2=(x + w, y + h), color=(255, 0, 0), thickness=2)
             frame_flip = cv2.flip(image, 1)
-            jpeg = cv2.imencode('.jpg', frame_flip)
-            #data = []
-            #data.append(jpeg.tobytes())
+            ret,jpeg = cv2.imencode('.jpg', frame_flip)
+            data = []
+            data.append(jpeg.tobytes())
             return jpeg.tobytes()
     class Detection(NamedTuple):
         name: str
@@ -341,7 +341,7 @@ def app_mask_Detect():
                     cv2.putText(frame, label, (startX, startY - 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
                     cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
-                    jpeg = cv2.imencode('.jpg', frame)
+                    ret,jpeg = cv2.imencode('.jpg', frame)
              return jpeg.tobytes()
 
     webrtc_ctx = webrtc_streamer(
