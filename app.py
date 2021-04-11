@@ -12,7 +12,7 @@ from imutils.video import VideoStream
 import imutils
 import cv2, os, urllib.request
 import numpy as np
-from django.conf import settings
+
 
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
