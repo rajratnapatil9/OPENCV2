@@ -342,7 +342,7 @@ def app_mask_Detect():
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
                     cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
                     ret, jpeg = cv2.imencode('.jpg', frame)
-             return jpeg.tobytes()
+             return ret,jpeg.tobytes()
 
     webrtc_ctx = webrtc_streamer(
                     key="mask-detection",
