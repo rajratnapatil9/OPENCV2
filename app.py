@@ -213,7 +213,7 @@ def app_mask_Detect():
          def __del__(self):
             cv2.destroyAllWindows()
 
-         def detect_and_predict_mask(self, frame, faceNet, maskNet):
+         def transform(self, frame, faceNet, maskNet):
             # grab the dimensions of the frame and then construct a blob
             # from it
             (h, w) = frame.shape[:2]
