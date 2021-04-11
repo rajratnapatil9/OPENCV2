@@ -211,7 +211,7 @@ def app_mask_Detect():
          def __del__(self):
             cv2.destroyAllWindows()
 
-         def pred_face_mask(self, frame, faceNet, maskNet):
+         def detect_and_predict_mask(self, frame, faceNet, maskNet):
             
             
 
