@@ -312,7 +312,7 @@ def app_mask_Detect():
                     ret, jpeg = cv2.imencode('.jpg', frame)
              return jpeg.tobytes()
         
-         def transform(self,frame:av.VideoFrame):
+         def transform(self,frame:av.VideoFrame)-> av.VideoFrame:
              frame = self.vs.read()
              frame = imutils.resize(frame, width=650)
              frame = cv2.flip(frame, 1)
