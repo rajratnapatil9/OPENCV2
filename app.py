@@ -219,7 +219,7 @@ def app_mask_Detect():
             weightsPath = r"face_detector/res10_300x300_ssd_iter_140000.caffemodel"
     
             faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
-            maskNet = r"face_detector/mask_detector.model.h5"
+            maskNet = load_model(face_detector/mask_detector.model.h5)
             # grab the dimensions of the frame and then construct a blob
             # from it
             (h, w) = frame.shape[:2]
