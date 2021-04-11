@@ -313,6 +313,7 @@ def app_mask_Detect():
              return jpeg.tobytes()
         
          def transform(self,frame:av.VideoFrame)-> av.VideoFrame:
+             jpeg = frame.to_ndarray(format="bgr24")
              frame = self.vs.read()
              frame = imutils.resize(frame, width=650)
              frame = cv2.flip(frame, 1)
@@ -348,6 +349,7 @@ def app_mask_Detect():
                     mode=WebRtcMode.SENDRECV,
                     client_settings=WEBRTC_CLIENT_SETTINGS,
                     video_transformer_factory= MaskDetect,
+
                 )
 
     
