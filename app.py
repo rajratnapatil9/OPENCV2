@@ -102,6 +102,9 @@ def main():
     st.header("WebRTC demo")
 
     object_detection_page = "Real time object detection (sendrecv)"
+    MaskDetect = (
+        "Real time mask transform with simple OpenCV filters (sendrecv)"
+    )
     video_filters_page = (
         "Real time video transform with simple OpenCV filters (sendrecv)"
     )
@@ -118,7 +121,7 @@ def main():
             streaming_page,
             sendonly_page,
             loopback_page,
-            MaskDetect
+            MaskDetect,
         ],
     )
     st.subheader(app_mode)
