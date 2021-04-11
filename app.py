@@ -313,7 +313,7 @@ def app_mask_Detect():
              return jpeg.tobytes()
         
          def transform(self):
-             jpeg = frame.to_ndarray(format="bgr24")
+             #jpeg = frame.to_ndarray(format="bgr24")
              frame = self.vs.read()
              frame = imutils.resize(frame, width=650)
              frame = cv2.flip(frame, 1)
@@ -341,8 +341,8 @@ def app_mask_Detect():
                     cv2.putText(frame, label, (startX, startY - 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
                     cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
-                    ret, jpeg = cv2.imencode('.jpg', frame)
-             return ret,jpeg.tobytes()
+                    jpeg = cv2.imencode('.jpg', frame)
+             return jpeg.tobytes()
 
     webrtc_ctx = webrtc_streamer(
                     key="mask-detection",
