@@ -169,9 +169,7 @@ def app_mask_Detect():
 
     prototxtPath = join(dirname(__file__), "face_detector/deploy.prototxt")
     weightsPath = join(dirname(__file__), "face_detector/res10_300x300_ssd_iter_140000.caffemodel")
-    #prototxtPath = r"https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/deploy.prototxt"  
-    #weightsPath = r"https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/res10_300x300_ssd_iter_140000.caffemodel"
-    #PROTOTXT_mask_LOCAL_PATH = HERE / "./face_detector/deploy.prototxt"
+    
     faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
    # download_file(MODEL_URL_face, MODEL_face_LOCAL_PATH, expected_size=23147564)
     #download_file(MODEL_URL_mask, MODEL_face_LOCAL_PATH, expected_size=23147564)
@@ -206,7 +204,7 @@ def app_mask_Detect():
 
     
     class MaskDetect(object):
-
+         
          def __init__(self):
              self.vs = VideoStream(src=0).start()
 
@@ -214,6 +212,13 @@ def app_mask_Detect():
             cv2.destroyAllWindows()
 
          def transform(self, frame, faceNet, maskNet):
+            
+            maskNet = join(dirname(__file__), "face_detector/mask_detector.model.h5")
+
+            prototxtPath = join(dirname(__file__), "face_detector/deploy.prototxt")
+            weightsPath = join(dirname(__file__), "face_detector/res10_300x300_ssd_iter_140000.caffemodel")
+    
+            faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
             # grab the dimensions of the frame and then construct a blob
             # from it
             (h, w) = frame.shape[:2]
