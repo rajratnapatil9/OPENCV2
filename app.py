@@ -342,14 +342,12 @@ def app_mask_Detect():
                     cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
                     ret, jpeg = cv2.imencode('.jpg', frame)
                     return jpeg.tobytes()
-       
-webrtc_ctx = webrtc_streamer(
-        key="mask-detection",
-        mode=WebRtcMode.SENDRECV,
-        client_settings=WEBRTC_CLIENT_SETTINGS,
-        video_transformer_factory=MaskDetect,
-        
-    )
+    webrtc_ctx = webrtc_streamer(
+                    key="mask-detection",
+                    mode=WebRtcMode.SENDRECV,
+                    client_settings=WEBRTC_CLIENT_SETTINGS,
+                    video_transformer_factory= MaskDetect,
+                )
 
     
 
