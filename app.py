@@ -4,7 +4,7 @@ import queue
 import urllib.request
 from pathlib import Path
 from typing import List, NamedTuple
-
+import os
 
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -150,18 +150,18 @@ def app_loopback():
 
 def app_mask_Detect():
    
-    MODEL_URL_face = "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/res10_300x300_ssd_iter_140000.caffemodel"  # noqa: E501
-    MODEL_face_LOCAL_PATH = HERE / "./face_detector/res10_300x300_ssd_iter_140000.caffemodel"
+   # MODEL_URL_face = "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/res10_300x300_ssd_iter_140000.caffemodel"  # noqa: E501
+   # MODEL_face_LOCAL_PATH = HERE / "./face_detector/res10_300x300_ssd_iter_140000.caffemodel"
 
-    MODEL_URL_mask = "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/mask_detector.model.h5"  # noqa: E501
-    MODEL_mask_LOCAL_PATH = HERE / "./face_detector/mask_detector.model.h5"
+   # MODEL_URL_mask = "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/mask_detector.model.h5"  # noqa: E501
+   # MODEL_mask_LOCAL_PATH = HERE / "./face_detector/mask_detector.model.h5"
 
-    PROTOTXT_URL_mask = "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/deploy.prototxt"  # noqa: E501
-    PROTOTXT_mask_LOCAL_PATH = HERE / "./face_detector/deploy.prototxt"
+   # PROTOTXT_URL_mask = "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/deploy.prototxt"  # noqa: E501
+    #PROTOTXT_mask_LOCAL_PATH = HERE / "./face_detector/deploy.prototxt"
 
-    download_file(MODEL_URL_face, MODEL_face_LOCAL_PATH, expected_size=23147564)
-    download_file(MODEL_URL_mask, MODEL_face_LOCAL_PATH, expected_size=23147564)
-    download_file(PROTOTXT_URL_mask, PROTOTXT_mask_LOCAL_PATH, expected_size=29353)
+   # download_file(MODEL_URL_face, MODEL_face_LOCAL_PATH, expected_size=23147564)
+    #download_file(MODEL_URL_mask, MODEL_face_LOCAL_PATH, expected_size=23147564)
+   # download_file(PROTOTXT_URL_mask, PROTOTXT_mask_LOCAL_PATH, expected_size=29353)
 
     
 
