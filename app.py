@@ -280,6 +280,7 @@ def app_mask_Detect():
             # locations
             return (locs, preds)
 
+         
          def get_frame(self):
              frame = self.vs.read()
              frame = imutils.resize(frame, width=650)
@@ -308,7 +309,7 @@ def app_mask_Detect():
                 cv2.putText(frame, label, (startX, startY - 10),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
                 cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
-                ret, jpeg = cv2.imencode('.jpg', frame)
+             ret, jpeg = cv2.imencode('.jpg', frame)
              return jpeg.tobytes()
 
          def transform(self):
@@ -321,7 +322,7 @@ def app_mask_Detect():
 
             # loop over the detected face locations and their corresponding
             # locations
-              for (box, pred) in zip(locs, preds):
+             for (box, pred) in zip(locs, preds):
                     # unpack the bounding box and predictions
                     (startX, startY, endX, endY) = box
                     (mask, withoutMask) = pred
