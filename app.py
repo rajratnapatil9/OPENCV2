@@ -165,9 +165,12 @@ def app_mask_Detect():
 
     maskNet = "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/mask_detector.model.h5"  # noqa: E501
    # MODEL_mask_LOCAL_PATH = HERE / "./face_detector/mask_detector.model.h5"
+    from os.path import dirname, join
 
-    prototxtPath = r"https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/deploy.prototxt"  
-    weightsPath = r"https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/res10_300x300_ssd_iter_140000.caffemodel"
+    prototxtPath = join(dirname(__file__), "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/deploy.prototxt")
+    weightsPath = join(dirname(__file__), "https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/res10_300x300_ssd_iter_140000.caffemodel")
+    #prototxtPath = r"https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/deploy.prototxt"  
+    #weightsPath = r"https://github.com/rajratnapatil9/Face-Mask-With-Django-Website/blob/main/face_detector/res10_300x300_ssd_iter_140000.caffemodel"
     #PROTOTXT_mask_LOCAL_PATH = HERE / "./face_detector/deploy.prototxt"
     faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
    # download_file(MODEL_URL_face, MODEL_face_LOCAL_PATH, expected_size=23147564)
